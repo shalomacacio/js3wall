@@ -17,9 +17,15 @@ class UsersTableSeeder extends Seeder
 
     private function createUser()
     {
+      // User::create([
+      //   'name' => 'Administrador',
+      //   'email' => 'admin@mult3telecom.com.br',
+      //   'password' => '@admin123',
+      // ]);
+
       User::create([
         'name' => 'Administrador',
-        'email' => 'admin@mult3telecom.com.br',
+        'email' => 'admin@jnet.com.br',
         'password' => '@admin123',
       ]);
       // Exibe uma informação no console durante o processo de seed

@@ -153,10 +153,8 @@
                               <th>CLIENTE</th>
                               <th>SERVIÇO</th>
                               <th>TECNICO</th>
-                              <th>CONSULTOR</th>
                               <th>PLANO</th>
-                              <th>TAXA</th>
-                              <th>STATUS</th>
+                              <th>CLASSFICACAO</th>
                               <th>INATIVO</th>
                               <th>ACEITE</th>
                               <th>MAC</th>
@@ -176,9 +174,7 @@
                             <td>{{ $servico->cliente }}</td>
                             <td>{{ $servico->servico }}</td>
                             <td>{{ $servico->tecnico }}</td>
-                            <td>{{ $servico->consultor }}</td>
                             <td>{{ $servico->plano }}</td>
-                            <td>{{ $servico->taxa }}</td>
                             <td>{{ $servico->classificacao }}</td>
                             <td>{{ $servico->inativo }}</td>
                             <td>{{ $servico->contrato_eletronico }}</td>
@@ -195,10 +191,8 @@
                               <th>CLIENTE</th>
                               <th>SERVIÇO</th>
                               <th>TECNICO</th>
-                              <th>CONSULTOR</th>
                               <th>PLANO</th>
-                              <th>TAXA</th>
-                              <th>STATUS</th>
+                              <th>CLASSFICACAO</th>
                               <th>INATIVO</th>
                               <th>ACEITE</th>
                               <th>MAC</th>
