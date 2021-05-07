@@ -96,6 +96,7 @@
                                 <th>ATE_ENC</th>
                                 <th>OS</th>
                                 <th>OS TIPO</th>
+                                <th>CLASSIFICACAO</th>
                                 <th>TECNICO</th>
                                 <th>INI_OS</th>
                                 <th>OS_FECH</th>
@@ -119,6 +120,7 @@
                                     <td>{{$a->finalizado}}</td>
                                     <td>{{$a->codos}}</td>
                                     <td>{{$a->descricao}}</td>
+                                    <td>{{ $a->classificacao }}</td>
                                     <td>{{$a->usr_nome}}</td>
                                     <td>
                                       @isset($a->abertura)
@@ -150,6 +152,7 @@
                                 <th>ATE_ENC</th>
                                 <th>OS</th>
                                 <th>OS TIPO</th>
+                                <th>CLASSIFICACAO</th>
                                 <th>TECNICO</th>
                                 <th>INI_OS</th>
                                 <th>OS_FECH_TEC</th>

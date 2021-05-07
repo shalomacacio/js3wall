@@ -330,6 +330,7 @@ class RelatorioController extends Controller
       $atendimentos = DB::connection('pgsql')->table('mk_atendimento as a')
         ->join('mk_ate_os as at_os', 'a.codatendimento', 'at_os.cd_atendimento')
         ->leftJoin('mk_os as os', 'at_os.cd_os','os.codos')
+        ->leftJoin('mk_os_classificacao_encerramento as cla', 'os.classificacao_encerramento', 'cla.codclassifenc')
         ->leftJoin('mk_os_tipo as tipo', 'os.tipo_os','tipo.codostipo')
         ->leftJoin('mk_pessoas as p', 'a.cliente_cadastrado', 'p.codpessoa')
         ->leftJoin('fr_usuario as u', 'os.operador_fech_tecnico', 'u.usr_codigo')
@@ -342,6 +343,7 @@ class RelatorioController extends Controller
             ,'os.codos', 'os.dh_insert', 'os.dt_hr_fechamento_tec', 'os.encerrado', 'os.operador_fechamento'
             ,'u.usr_nome'
             ,'tipo.descricao'
+            ,'cla.classificacao'
             )
         ->get();
 
