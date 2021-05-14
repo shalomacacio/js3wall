@@ -86,7 +86,8 @@
                                 <th>VER</th>
                                 {{-- <th>GARANTIA</th> --}}
                                 <th>O.S</th>
-                                <th>VER</th> 
+                                <th>VER</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -285,7 +286,7 @@
           fim: "{{ $fim }}"
         },
         success: function(data) {
-          console.log(data.result);
+          // console.log(result.result[0]);
           $("#ostable tr").remove();
           $('#ostable').append('<tr><th>COD</th><th>ABERTURA</th><th>CLASSIFICACAOS</th><th>PROCESSO</th><th>FECHAMENTO</th><th>CLASS_ENC</th></tr>');
         for(var i=0; i < data.result.length ; i++)
