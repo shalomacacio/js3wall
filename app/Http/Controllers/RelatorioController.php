@@ -263,20 +263,6 @@ class RelatorioController extends Controller
         $fim = $request->dt_fim;
       }
 
-      // $result = DB::connection('pgsql')->table('mk_contratos_controle_renovacao_detalhe as ccrd')
-      //   ->join('mk_contratos_contas as cc', 'ccrd.cd_contrato', 'cc.cd_contrato')
-      //   ->join('mk_contas_faturadas as cf', 'cc.cd_conta', 'cf.cd_conta')
-      //   ->join('mk_faturas as f', 'cf.cd_fatura', 'f.codfatura')
-      //   ->join('mk_pessoas as p', 'f.cd_pessoa', 'p.codpessoa')
-      //   ->where('ccrd.ocorrencia', 1)
-      //   ->whereRaw("DATE(ccrd.vcto_final - INTERVAL '11 MONTHS') = f.data_vencimento ")
-      //   ->select( 'ccrd.cd_contrato' , DB::raw("date(ccrd.vcto_final - interval '11 months')as inicio")  
-      //   ,'ccrd.vcto_final', 'ccrd.cd_renvoacao_auto', 'ccrd.vlr_renovacao'
-      //   ,'p.codpessoa', 'p.nome_razaosocial', 'p.fone01', 'p.fone01', 'p.fone02' ,'cc.cd_contrato', 
-      //   'f.data_vencimento', 'f.liquidado')
-      //   ->get();
-      // ->toSql();
-
       $result = DB::connection('pgsql')->select((
         "select ccrd.cd_contrato,  date(ccrd.vcto_final - interval '11 months')as inicio
           ,ccrd.vcto_final, ccrd.cd_renvoacao_auto, ccrd.vlr_renovacao
@@ -297,8 +283,6 @@ class RelatorioController extends Controller
         where ccrd.ocorrencia = 1
         and DATE(ccrd.vcto_final - INTERVAL '11 MONTHS') = f.data_vencimento  "      
     ));
-
-    // return dd($result);
 
       $renovacoes = $result;
         return view('financeiro.relatorios.renovacoes', compact('renovacoes'));
@@ -372,18 +356,6 @@ class RelatorioController extends Controller
         group by p.codpessoa, p.nome_razaosocial"      
       ),[$fim , $inicio ]);
       
-      // $result = DB::connection('pgsql')->table('mk_atendimento as a')
-      //   ->leftJoin('mk_ate_os as at_os', 'a.codatendimento', 'at_os.cd_atendimento')
-      //   ->join('mk_os as os', 'at_os.cd_os','os.codos')
-      //   ->join('mk_pessoas as p', 'a.cliente_cadastrado', 'p.codpessoa')
-      //   ->whereBetween('dt_abertura', [$fim, $inicio])
-      //   ->select('p.codpessoa','p.nome_razaosocial'
-      //       , DB::raw("COUNT(DISTINCT a.codatendimento) as tickets" )
-      //       , DB::raw("COUNT(os.codos) as os" )
-      //       )
-      //   ->groupBy('p.codpessoa','p.nome_razaosocial')
-      //   ->get();
-
         $atendimentos = $result;
 
       return view('relatorios.sla_garantia', compact('atendimentos', 'request', 'inicio', 'fim'));
@@ -426,20 +398,6 @@ class RelatorioController extends Controller
         where a.dt_abertura between ? and ? 
         and a.cliente_cadastrado = ?"      
       ),[$fim , $inicio, $cliente ]);
-      
-      // $servicos = DB::connection('pgsql')->table('mk_atendimento as ate')
-      //               ->join('mk_ate_os as at_os', 'ate.codatendimento', 'at_os.cd_atendimento')
-      //               ->join('mk_ate_processos as processo', 'ate.cd_processo', 'processo.codprocesso')
-      //               ->join('mk_atendimento_classificacao as classif', 'ate.classificacao_atendimento','classif.codatclass')
-      //               ->join('mk_atendimento_classificacao as classifenc', 'ate.classificacao_encerramento','classifenc.codatclass' )
-      //               ->where('ate.cliente_cadastrado', $cliente )
-      //               ->whereBetween('ate.dt_abertura', [$fim, $inicio] )
-      //               ->select('ate.codatendimento', 'dt_abertura', 'ate.classificacao_encerramento', 'ate.dt_finaliza'
-      //                         ,'processo.nome_processo'
-      //                         ,'classif.descricao'
-      //                         ,'classifenc.descricao as classifenc')
-      //               ->orderBy('dt_abertura')
-      //               ->get();
 
       return response()->json([
         'result' => $servicos
@@ -447,8 +405,6 @@ class RelatorioController extends Controller
     }
 
     public function receitas( Request $request){
-
-      // return dd( $request );
 
       $inicio = null;
       $fim = null;
